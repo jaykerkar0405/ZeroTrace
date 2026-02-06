@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { formatEther } from "viem";
-import { Shield, House, CircleCheck, CircleX, Clock, TrendingUp, Users, Coins, FolderKanban, TriangleAlert } from "lucide-react";
+import { House, CircleCheck, Clock, TrendingUp, Users, Coins, FolderKanban, TriangleAlert } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
