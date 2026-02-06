@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useReadContract } from "wagmi";
-import { Shield, Home, Search, Plus } from "lucide-react";
+import { Shield, Home, Search, Plus, ArrowLeft, FolderKanban } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -107,8 +107,8 @@ export default function ProjectsPage() {
 
     return (
         <ProtectedRoute>
-            <div className="min-h-screen bg-background">
-                <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
+            <div className="min-h-screen max-w-7xl mx-auto bg-background">
+                <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
                     <div className="container flex h-16 items-center justify-between">
                         <div className="flex items-center gap-2">
                             <Shield className="h-6 w-6" />
@@ -121,12 +121,6 @@ export default function ProjectsPage() {
                                     Dashboard
                                 </Button>
                             </Link>
-                            <Link href="/dashboard/submit-project">
-                                <Button className="gap-2">
-                                    <Plus className="h-4 w-4" />
-                                    Submit Project
-                                </Button>
-                            </Link>
                             <ConnectButton />
                             <ModeToggle />
                         </div>
@@ -134,52 +128,71 @@ export default function ProjectsPage() {
                 </nav>
 
                 <main className="container py-8">
-                    <div className="mb-8">
-                        <h1 className="text-4xl font-bold mb-2">Public Goods Projects</h1>
-                        <p className="text-muted-foreground">
-                            Discover and support projects building the future of Web3
-                        </p>
+                    <Link href="/dashboard">
+                        <Button variant="ghost" className="gap-2 mb-6">
+                            <ArrowLeft className="h-4 w-4" />
+                            Back to Dashboard
+                        </Button>
+                    </Link>
+
+                    <div className="flex items-center justify-between mb-8">
+                        <div>
+                            <h1 className="text-4xl font-bold mb-2">Public Goods Projects</h1>
+                            <p className="text-muted-foreground">
+                                Discover and support projects building the future of Web3
+                            </p>
+                        </div>
+                        <Link href="/dashboard/submit-project">
+                            <Button className="gap-2">
+                                <Plus className="h-4 w-4" />
+                                Submit Project
+                            </Button>
+                        </Link>
                     </div>
 
                     {/* Filters */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                        <div className="md:col-span-2 relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                            <input
-                                type="text"
-                                placeholder="Search projects..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 border rounded-lg bg-background"
-                            />
-                        </div>
+                    <Card className="border-2 mb-8">
+                        <CardContent className="pt-6">
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <div className="md:col-span-2 relative">
+                                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                    <input
+                                        type="text"
+                                        placeholder="Search projects..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        className="w-full pl-10 pr-4 py-2 border rounded-md bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                    />
+                                </div>
 
-                        <select
-                            value={categoryFilter}
-                            onChange={(e) => setCategoryFilter(e.target.value)}
-                            className="px-4 py-2 border rounded-lg bg-background"
-                        >
-                            <option value="all">All Categories</option>
-                            <option value="infrastructure">Infrastructure</option>
-                            <option value="tools">Developer Tools</option>
-                            <option value="education">Education</option>
-                            <option value="community">Community</option>
-                            <option value="research">Research</option>
-                            <option value="other">Other</option>
-                        </select>
+                                <select
+                                    value={categoryFilter}
+                                    onChange={(e) => setCategoryFilter(e.target.value)}
+                                    className="px-3 py-2 border rounded-md bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                >
+                                    <option value="all">All Categories</option>
+                                    <option value="infrastructure">Infrastructure</option>
+                                    <option value="tools">Developer Tools</option>
+                                    <option value="education">Education</option>
+                                    <option value="community">Community</option>
+                                    <option value="research">Research</option>
+                                    <option value="other">Other</option>
+                                </select>
 
-                        <select
-                            value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value)}
-                            className="px-4 py-2 border rounded-lg bg-background"
-                        >
-                            <option value="all">All Status</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Active">Active</option>
-                            <option value="Funded">Funded</option>
-                            <option value="Completed">Completed</option>
-                        </select>
-                    </div>
+                                <select
+                                    value={statusFilter}
+                                    onChange={(e) => setStatusFilter(e.target.value)}
+                                    className="px-3 py-2 border rounded-md bg-background text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                >
+                                    <option value="all">All Status</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Funded">Funded</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                        </CardContent>
+                    </Card>
 
                     {/* Project Count */}
                     <div className="mb-6">
@@ -190,25 +203,32 @@ export default function ProjectsPage() {
 
                     {/* Projects Grid */}
                     {isLoading ? (
-                        <div className="text-center py-12">
-                            <p className="text-muted-foreground">Loading projects...</p>
-                        </div>
+                        <Card className="border-2">
+                            <CardContent className="flex items-center justify-center py-12">
+                                <Shield className="h-8 w-8 text-primary animate-pulse mr-3" />
+                                <p className="text-muted-foreground">Loading projects...</p>
+                            </CardContent>
+                        </Card>
                     ) : filteredProjects.length === 0 ? (
-                        <div className="text-center py-12">
-                            <p className="text-muted-foreground">No projects found</p>
-                            <Link href="/dashboard/submit-project">
-                                <Button className="mt-4 gap-2">
-                                    <Plus className="h-4 w-4" />
-                                    Submit Your Project
-                                </Button>
-                            </Link>
-                        </div>
+                        <Card className="border-2">
+                            <CardContent className="flex flex-col items-center justify-center py-12">
+                                <FolderKanban className="h-16 w-16 text-muted-foreground mb-4" />
+                                <h3 className="text-xl font-semibold mb-2">No Projects Found</h3>
+                                <p className="text-muted-foreground mb-4">Be the first to submit a project proposal.</p>
+                                <Link href="/dashboard/submit-project">
+                                    <Button className="gap-2">
+                                        <Plus className="h-4 w-4" />
+                                        Submit Your Project
+                                    </Button>
+                                </Link>
+                            </CardContent>
+                        </Card>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {filteredProjects.map((project) => (
                                 <Card
                                     key={project.id}
-                                    className="hover:shadow-lg transition-shadow cursor-pointer overflow-hidden flex flex-col"
+                                    className="border-2 hover:shadow-lg transition-shadow cursor-pointer overflow-hidden flex flex-col"
                                 >
                                     <div className="h-48 w-full overflow-hidden bg-gradient-to-br from-primary/10 to-primary/30 flex items-center justify-center">
                                         {project.imageUrl && !imageErrors.has(project.id) ? (
