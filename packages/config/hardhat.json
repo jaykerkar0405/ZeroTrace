@@ -1,0 +1,14 @@
+{
+  "display": "Hardhat",
+  "include": ["**/*.ts"],
+  "extends": "./base.json",
+  "exclude": ["node_modules"],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "Node"
+  }
+}

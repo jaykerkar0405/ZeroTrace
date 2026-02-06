@@ -1,0 +1,21 @@
+{
+  "display": "Default",
+  "exclude": ["node_modules"],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["ES2022"],
+    "target": "ES2022",
+    "module": "ESNext",
+    "incremental": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "Bundler",
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
