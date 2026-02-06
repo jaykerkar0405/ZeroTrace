@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Home, CheckCircle2, Vote, Users, Coins, Rocket, FolderKanban } from "lucide-react";
+import { Shield, Home, CheckCircle2, Vote, Users, Coins, Rocket, FolderKanban, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -14,11 +14,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { VOTER_REGISTRY_ADDRESS, VOTER_REGISTRY_ABI } from "@/contracts";
 
+const ADMIN_ADDRESS = "0xd2e06BcB4e0E2cC978de6eb606B685B1F6EFC4d6";
+
 export default function Dashboard() {
   const router = useRouter();
   const { address } = useAccount();
   const [storedNullifier, setStoredNullifier] = useState<string | null>(null);
   const [hasCheckedStorage, setHasCheckedStorage] = useState(false);
+  const isAdmin = address?.toLowerCase() === ADMIN_ADDRESS.toLowerCase();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -86,6 +89,14 @@ export default function Dashboard() {
                   Home
                 </Button>
               </Link>
+              {isAdmin && (
+                <Link href="/admin">
+                  <Button variant="outline" className="gap-2">
+                    <Settings className="h-4 w-4" />
+                    Admin
+                  </Button>
+                </Link>
+              )}
               <ConnectButton />
               <ModeToggle />
             </div>
@@ -147,7 +158,7 @@ export default function Dashboard() {
               </Card>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className={`grid gap-6 ${isAdmin ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
               <Card className="border-2 flex flex-col">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -193,6 +204,31 @@ export default function Dashboard() {
                   </Link>
                 </CardContent>
               </Card>
+
+              {isAdmin && (
+                <Card className="border-2 flex flex-col border-primary">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Settings className="h-5 w-5 text-primary" />
+                      Admin Panel
+                    </CardTitle>
+                    <CardDescription>
+                      Manage projects and platform settings
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex flex-col flex-1">
+                    <p className="text-sm text-muted-foreground mb-4 flex-1">
+                      Approve projects, manage matching pools, and view platform analytics.
+                    </p>
+                    <Link href="/admin">
+                      <Button variant="default" className="w-full gap-2">
+                        <Settings className="h-4 w-4" />
+                        Open Admin Panel
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
             <Card className="border-2">
