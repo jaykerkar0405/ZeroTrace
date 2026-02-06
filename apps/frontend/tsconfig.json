@@ -1,0 +1,11 @@
+{
+  "exclude": ["node_modules"],
+  "extends": "../../packages/config/nextjs.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "compilerOptions": {
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
