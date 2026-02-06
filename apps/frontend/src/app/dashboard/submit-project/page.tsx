@@ -8,7 +8,6 @@ import { Home, ArrowLeft, Loader2, CheckCircle2, AlertCircle, Upload } from "luc
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { ProtectedRoute } from "@/components/protected-route";
