@@ -1,24 +1,46 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
-import { useAccount } from "wagmi";
+import { useEffect, useState } from "react";
+import { useAccount, useReadContract } from "wagmi";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Shield, ArrowLeft } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { VOTER_REGISTRY_ADDRESS, VOTER_REGISTRY_ABI } from "@/contracts";
 
 export default function ConnectPage() {
   const router = useRouter();
-  const { isConnected } = useAccount();
+  const { address, isConnected } = useAccount();
+  const [storedNullifier, setStoredNullifier] = useState<string | null>(null);
 
   useEffect(() => {
-    if (isConnected) {
-      router.push("/dashboard");
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("user_nullifier");
+      setStoredNullifier(saved);
     }
-  }, [isConnected, router]);
+  }, []);
+
+  const { data: isRegistered, isLoading } = useReadContract({
+    address: VOTER_REGISTRY_ADDRESS,
+    abi: VOTER_REGISTRY_ABI,
+    functionName: "isNullifierUsed",
+    args: storedNullifier ? [BigInt(storedNullifier)] : undefined,
+  });
+
+  useEffect(() => {
+    if (isConnected && address && !isLoading) {
+      if (storedNullifier && isRegistered) {
+        // Returning voter - go to dashboard
+        router.push("/dashboard");
+      } else {
+        // New voter - go to registration
+        router.push("/register");
+      }
+    }
+  }, [isConnected, address, isRegistered, isLoading, storedNullifier, router]);
 
   return (
     <div className="min-h-screen max-w-7xl mx-auto bg-background">
