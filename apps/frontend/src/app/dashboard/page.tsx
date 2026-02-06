@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Home, CheckCircle2, Vote, Users, Coins, Rocket, FolderKanban, Settings } from "lucide-react";
+import { Shield, House, CircleCheck, Vote, Users, Coins, Rocket, FolderKanban, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -85,7 +85,7 @@ export default function Dashboard() {
             <div className="flex items-center gap-4">
               <Link href="/">
                 <Button variant="ghost" className="gap-2">
-                  <Home className="h-4 w-4" />
+                  <House className="h-4 w-4" />
                   Home
                 </Button>
               </Link>
@@ -111,7 +111,7 @@ export default function Dashboard() {
                 <p className="text-muted-foreground mt-2">Welcome to ZeroTrace Platform</p>
               </div>
               <Badge variant="outline" className="gap-2 px-4 py-2">
-                <CheckCircle2 className="h-4 w-4 text-green-500" />
+                <CircleCheck className="h-4 w-4 text-green-500" />
                 Verified Voter
               </Badge>
             </div>
@@ -120,7 +120,7 @@ export default function Dashboard() {
               <Card className="border-2">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <CheckCircle2 className="h-5 w-5 text-green-500" />
+                    <CircleCheck className="h-5 w-5 text-green-500" />
                     Registration Status
                   </CardTitle>
                 </CardHeader>
@@ -249,7 +249,7 @@ export default function Dashboard() {
                   <div className="rounded-lg border p-4">
                     <h4 className="font-semibold text-sm mb-2">Verification Status</h4>
                     <Badge variant="outline" className="gap-2">
-                      <CheckCircle2 className="h-3 w-3 text-green-500" />
+                      <CircleCheck className="h-3 w-3 text-green-500" />
                       Anon Aadhaar Verified
                     </Badge>
                   </div>

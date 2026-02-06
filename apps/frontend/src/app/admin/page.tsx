@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useAccount, useReadContract, useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { formatEther } from "viem";
-import { Shield, Home, CheckCircle2, XCircle, Clock, TrendingUp, Users, Coins, FolderKanban, AlertCircle } from "lucide-react";
+import { Shield, House, CircleCheck, CircleX, Clock, TrendingUp, Users, Coins, FolderKanban, TriangleAlert } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -136,7 +136,7 @@ export default function AdminPage() {
                             <div className="flex items-center gap-4">
                                 <Link href="/dashboard">
                                     <Button variant="ghost" className="gap-2">
-                                        <Home className="h-4 w-4" />
+                                        <House className="h-4 w-4" />
                                         Dashboard
                                     </Button>
                                 </Link>
@@ -150,7 +150,7 @@ export default function AdminPage() {
                         <div className="flex min-h-[calc(100vh-12rem)] items-center justify-center">
                             <Card className="max-w-md text-center">
                                 <CardHeader>
-                                    <AlertCircle className="mx-auto h-16 w-16 text-destructive" />
+                                    <TriangleAlert className="mx-auto h-16 w-16 text-destructive" />
                                     <CardTitle className="text-2xl">Access Denied</CardTitle>
                                     <CardDescription>
                                         You must be an administrator to access this page.
@@ -184,7 +184,7 @@ export default function AdminPage() {
                         <div className="flex items-center gap-4">
                             <Link href="/dashboard">
                                 <Button variant="ghost" className="gap-2">
-                                    <Home className="h-4 w-4" />
+                                    <House className="h-4 w-4" />
                                     Dashboard
                                 </Button>
                             </Link>
@@ -267,7 +267,7 @@ export default function AdminPage() {
                         <CardContent>
                             {pendingProjects.length === 0 ? (
                                 <div className="text-center py-8 text-muted-foreground">
-                                    <CheckCircle2 className="mx-auto h-12 w-12 mb-2 opacity-50" />
+                                    <CircleCheck className="mx-auto h-12 w-12 mb-2 opacity-50" />
                                     No pending projects to review
                                 </div>
                             ) : (
@@ -313,7 +313,7 @@ export default function AdminPage() {
                                                                         variant="outline"
                                                                         className="gap-2 cursor-not-allowed opacity-50"
                                                                     >
-                                                                        <AlertCircle className="h-4 w-4" />
+                                                                        <TriangleAlert className="h-4 w-4" />
                                                                         Cannot Approve Own Project
                                                                     </Button>
                                                                     <p className="text-xs text-muted-foreground mt-1">
@@ -338,7 +338,7 @@ export default function AdminPage() {
                                                                         </>
                                                                     ) : (
                                                                         <>
-                                                                            <CheckCircle2 className="h-4 w-4" />
+                                                                            <CircleCheck className="h-4 w-4" />
                                                                             Approve
                                                                         </>
                                                                     )}

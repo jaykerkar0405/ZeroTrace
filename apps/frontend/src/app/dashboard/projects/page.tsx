@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useReadContract } from "wagmi";
-import { Shield, Home, Search, Plus, ArrowLeft, FolderKanban } from "lucide-react";
+import { Shield, House, Search, Plus, ArrowLeft, FolderKanban } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -118,7 +118,7 @@ export default function ProjectsPage() {
                         <div className="flex items-center gap-4">
                             <Link href="/dashboard">
                                 <Button variant="ghost" className="gap-2">
-                                    <Home className="h-4 w-4" />
+                                    <House className="h-4 w-4" />
                                     Dashboard
                                 </Button>
                             </Link>

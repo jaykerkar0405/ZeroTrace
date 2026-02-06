@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { parseEther } from "viem";
-import { Home, ArrowLeft, Loader2, CheckCircle2, AlertCircle, Upload } from "lucide-react";
+import { House, ArrowLeft, LoaderCircle, CircleCheck, TriangleAlert, Upload } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -123,7 +123,7 @@ export default function SubmitProjectPage() {
                         <div className="flex items-center gap-4">
                             <Link href="/dashboard">
                                 <Button variant="ghost" className="gap-2">
-                                    <Home className="h-4 w-4" />
+                                    <House className="h-4 w-4" />
                                     Dashboard
                                 </Button>
                             </Link>
@@ -150,7 +150,7 @@ export default function SubmitProjectPage() {
                         {/* Status messages */}
                         {isSuccess && (
                             <div className="flex items-center gap-3 rounded-lg border border-green-500/30 bg-green-500/5 px-4 py-3">
-                                <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
+                                <CircleCheck className="h-5 w-5 text-green-500 shrink-0" />
                                 <div>
                                     <p className="font-medium text-green-500">Project submitted!</p>
                                     <p className="text-sm text-muted-foreground">Redirecting you to projects...</p>
@@ -160,7 +160,7 @@ export default function SubmitProjectPage() {
 
                         {error && (
                             <div className="flex items-center gap-3 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3">
-                                <AlertCircle className="h-5 w-5 text-destructive shrink-0" />
+                                <TriangleAlert className="h-5 w-5 text-destructive shrink-0" />
                                 <div>
                                     <p className="font-medium text-destructive">Something went wrong</p>
                                     <p className="text-sm text-muted-foreground">{error.message}</p>
@@ -389,7 +389,7 @@ export default function SubmitProjectPage() {
                                     className="gap-2 px-6"
                                 >
                                     {isSubmitting ? (
-                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                        <LoaderCircle className="h-4 w-4 animate-spin" />
                                     ) : (
                                         <Upload className="h-4 w-4" />
                                     )}

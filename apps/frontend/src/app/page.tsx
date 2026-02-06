@@ -10,7 +10,7 @@ import {
   Shield,
   Github,
   ArrowRight,
-  CheckCircle2,
+  CircleCheck,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -164,19 +164,19 @@ export default function Home() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Connect wallet
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Verify with Anon Aadhaar
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Receive 100 voice credits
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     No personal data stored
                   </li>
                 </ul>
@@ -192,19 +192,19 @@ export default function Home() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     View active proposals
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Read project details
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Check funding requests
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     See current vote counts
                   </li>
                 </ul>
@@ -220,19 +220,19 @@ export default function Home() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Allocate voice credits
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Quadratic cost: n² credits
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Generate ZK proof
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Submit anonymously
                   </li>
                 </ul>
@@ -248,19 +248,19 @@ export default function Home() {
               <CardContent>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Quadratic scores calculated
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Proportional allocation
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Automated transfers
                   </li>
                   <li className="flex gap-2">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" />
+                    <CircleCheck className="h-4 w-4 shrink-0 text-primary" />
                     Full transparency
                   </li>
                 </ul>
