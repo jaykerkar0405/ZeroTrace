@@ -1,0 +1,171 @@
+{
+  "address": "0xb5C4c1209825b2287C8F906Dc0B5361046461412",
+  "abi": [
+    {
+      "type": "error",
+      "name": "InvalidNullifier",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "NullifierAlreadyUsed",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "nullifier"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "VoterRegistered",
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "nullifier",
+          "indexed": true
+        },
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "INITIAL_VOICE_CREDITS",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getInitialVoiceCredits",
+      "constant": true,
+      "stateMutability": "pure",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getNullifierData",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "nullifier"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": "registeredAt"
+        },
+        {
+          "type": "bool",
+          "name": "isUsed"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getTotalRegisteredVoters",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isNullifierUsed",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "nullifier"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "nullifiers",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": "isUsed"
+        },
+        {
+          "type": "uint256",
+          "name": "registeredAt"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "registerVoter",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256",
+          "name": "nullifier"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "totalRegisteredVoters",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ]
+    }
+  ]
+}
