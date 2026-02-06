@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "name": "zerotrace-monorepo",
+  "description": "ZeroTrace - Decentralized quadratic funding platform with anonymous voting and sybil resistance",
+  "scripts": {
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "build": "turbo build",
+    "format": "prettier --write .",
+    "type-check": "turbo type-check",
+    "format:check": "prettier --check .",
+    "clean": "turbo clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
