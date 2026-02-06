@@ -21,16 +21,16 @@ function RainbowKitWithTheme({ children }: { children: React.ReactNode }) {
 export function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
   const [queryClient] = useState(() => new QueryClient());
+  const [config, setConfig] = useState<ReturnType<typeof getConfig> | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    setConfig(getConfig());
   }, []);
 
-  if (!mounted) {
+  if (!mounted || !config) {
     return null;
   }
-
-  const config = getConfig();
 
   return (
     <ThemeProvider enableSystem attribute="class" defaultTheme="system" disableTransitionOnChange>
