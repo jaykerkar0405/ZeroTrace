@@ -147,7 +147,7 @@ export default function Dashboard() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
-              <Card className="border-2">
+              <Card className="border-2 flex flex-col">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Rocket className="h-5 w-5" />
@@ -157,8 +157,8 @@ export default function Dashboard() {
                     Request funding for your public goods project
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
+                <CardContent className="flex flex-col flex-1">
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">
                     Have a project idea that benefits the ecosystem? Submit your proposal and get funded through quadratic funding.
                   </p>
                   <Link href="/dashboard/submit-project">
@@ -170,7 +170,7 @@ export default function Dashboard() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2">
+              <Card className="border-2 flex flex-col">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <FolderKanban className="h-5 w-5" />
@@ -180,8 +180,8 @@ export default function Dashboard() {
                     Discover and support public goods projects
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-4">
+                <CardContent className="flex flex-col flex-1">
+                  <p className="text-sm text-muted-foreground mb-4 flex-1">
                     Explore active projects seeking funding and contribute to the ones that matter to you.
                   </p>
                   <Link href="/dashboard/projects">
