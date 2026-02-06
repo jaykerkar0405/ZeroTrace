@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "main": "index.js",
+  "version": "1.0.0",
+  "name": "@zerotrace/typescript-config",
+  "files": [
+    "base.json",
+    "nextjs.json",
+    "hardhat.json"
+  ]
+}
