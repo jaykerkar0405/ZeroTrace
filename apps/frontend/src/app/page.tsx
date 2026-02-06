@@ -359,9 +359,11 @@ export default function Home() {
                   Launch App <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Button size="lg" variant="outline">
-                Read Documentation <Files className="h-4 w-4" />
-              </Button>
+              <Link href="https://github.com/jaykerkar0405/ZeroTrace/blob/main/README.md" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" className="gap-2">
+                  Read Documentation <Files className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
