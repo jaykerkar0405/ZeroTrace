@@ -1,20 +1,18 @@
 import fs from "fs";
 import path from "path";
-import { network } from "hardhat";
+import { ethers, network } from "hardhat";
 
 async function main() {
-  const connection = await network.connect();
-  const networkName = connection.networkName;
+  const networkName = network.name;
   console.log(`Deploying VoterRegistry contract to ${networkName}...`);
 
-  const { ethers } = connection;
-  const voterRegistry = await ethers.deployContract("VoterRegistry");
-
+  const VoterRegistry = await ethers.getContractFactory("VoterRegistry");
+  const voterRegistry = await VoterRegistry.deploy();
   await voterRegistry.waitForDeployment();
 
   const address = await voterRegistry.getAddress();
   console.log(`VoterRegistry deployed to: ${address}`);
-  console.log(`Network: ${networkName} (Chain ID: ${connection.networkConfig.chainId})`);
+  console.log(`Network: ${networkName}`);
 
   const contractData = {
     address: address,
@@ -22,7 +20,7 @@ async function main() {
   };
 
   const frontendPath = path.join(
-    import.meta.dirname,
+    __dirname,
     "../../frontend/src/contracts/VoterRegistry.json"
   );
 
