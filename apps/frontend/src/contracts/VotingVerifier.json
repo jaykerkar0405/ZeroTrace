@@ -1,0 +1,36 @@
+{
+  "address": "0xa523aF0216500D6F50DCc4240526d5197853b989",
+  "abi": [
+    {
+      "type": "function",
+      "name": "verifyProof",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "uint256[2]",
+          "name": "_pA"
+        },
+        {
+          "type": "uint256[2][2]",
+          "name": "_pB"
+        },
+        {
+          "type": "uint256[2]",
+          "name": "_pC"
+        },
+        {
+          "type": "uint256[7]",
+          "name": "_pubSignals"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": ""
+        }
+      ]
+    }
+  ]
+}
