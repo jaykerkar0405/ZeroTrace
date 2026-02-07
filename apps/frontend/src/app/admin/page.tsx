@@ -31,7 +31,7 @@ export default function AdminPage() {
     });
 
     // Check if user is admin
-    const isAdmin = address?.toLowerCase() === adminAddress?.toLowerCase();
+    const isAdmin = address?.toLowerCase() === (adminAddress as string | undefined)?.toLowerCase();
 
     // Read all projects
     const { data: allProjectsData, refetch: refetchProjects } = useReadContract({
