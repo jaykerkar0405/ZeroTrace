@@ -12,8 +12,10 @@
     "format": "prettier --write .",
     "deploy": "hardhat run scripts/deploy.ts",
     "deploy:verifier": "hardhat run scripts/deploy-verifier.ts",
+    "deploy:voting": "hardhat run scripts/deploy-voting.ts",
     "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia",
-    "deploy:verifier:sepolia": "hardhat run scripts/deploy-verifier.ts --network sepolia"
+    "deploy:verifier:sepolia": "hardhat run scripts/deploy-verifier.ts --network sepolia",
+    "deploy:voting:sepolia": "hardhat run scripts/deploy-voting.ts --network sepolia"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
