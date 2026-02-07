@@ -12,16 +12,31 @@ import { Badge } from "@/components/ui/badge";
 import { useAccount, useReadContract } from "wagmi";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { VOTER_REGISTRY_ADDRESS, VOTER_REGISTRY_ABI } from "@/contracts";
-
-const ADMIN_ADDRESS = "0xd2e06BcB4e0E2cC978de6eb606B685B1F6EFC4d6";
+import { VOTER_REGISTRY_ADDRESS, VOTER_REGISTRY_ABI, PROJECT_ADDRESS, PROJECT_ABI } from "@/contracts";
 
 export default function Dashboard() {
   const router = useRouter();
   const { address } = useAccount();
   const [storedNullifier, setStoredNullifier] = useState<string | null>(null);
   const [hasCheckedStorage, setHasCheckedStorage] = useState(false);
-  const isAdmin = address?.toLowerCase() === ADMIN_ADDRESS.toLowerCase();
+
+  // Read admin address from contract instead of hardcoding
+  const { data: adminAddress } = useReadContract({
+    address: PROJECT_ADDRESS,
+    abi: PROJECT_ABI,
+    functionName: "admin",
+  });
+
+  const isAdmin = address?.toLowerCase() === adminAddress?.toLowerCase();
+
+  // Debug: Log admin check
+  useEffect(() => {
+    if (adminAddress && address) {
+      console.log("Contract Admin:", adminAddress);
+      console.log("Your Wallet:", address);
+      console.log("Is Admin?", isAdmin);
+    }
+  }, [adminAddress, address, isAdmin]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -206,10 +221,10 @@ export default function Dashboard() {
               </Card>
 
               {isAdmin && (
-                <Card className="border-2 flex flex-col border-primary">
+                <Card className="border-2 flex flex-col">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                      <Settings className="h-5 w-5 text-primary" />
+                      <Settings className="h-5 w-5" />
                       Admin Panel
                     </CardTitle>
                     <CardDescription>
@@ -221,7 +236,7 @@ export default function Dashboard() {
                       Approve projects, manage matching pools, and view platform analytics.
                     </p>
                     <Link href="/admin">
-                      <Button variant="default" className="w-full gap-2">
+                      <Button variant="outline" className="w-full gap-2">
                         <Settings className="h-4 w-4" />
                         Open Admin Panel
                       </Button>

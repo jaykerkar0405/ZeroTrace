@@ -16,9 +16,6 @@ import { fetchFromIPFS } from "@/lib/storage/ipfs";
 import { ProjectMetadata, ProjectStatus } from "@/types";
 import { PROJECT_ABI, PROJECT_ADDRESS, VOTER_REGISTRY_ABI, VOTER_REGISTRY_ADDRESS } from "@/contracts";
 
-// Admin wallet address - should match contract owner
-const ADMIN_ADDRESS = "0xd2e06BcB4e0E2cC978de6eb606B685B1F6EFC4d6";
-
 export default function AdminPage() {
     const { address } = useAccount();
     const [pendingProjects, setPendingProjects] = useState<any[]>([]);
@@ -26,8 +23,15 @@ export default function AdminPage() {
     const [selectedProject, setSelectedProject] = useState<number | null>(null);
     const [actionType, setActionType] = useState<"approve" | "reject" | null>(null);
 
+    // Read admin address from contract instead of hardcoding
+    const { data: adminAddress } = useReadContract({
+        address: PROJECT_ADDRESS,
+        abi: PROJECT_ABI,
+        functionName: "admin",
+    });
+
     // Check if user is admin
-    const isAdmin = address?.toLowerCase() === ADMIN_ADDRESS.toLowerCase();
+    const isAdmin = address?.toLowerCase() === adminAddress?.toLowerCase();
 
     // Read all projects
     const { data: allProjectsData, refetch: refetchProjects } = useReadContract({
