@@ -13,6 +13,7 @@ import { useAccount, useReadContract } from "wagmi";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { VOTER_REGISTRY_ADDRESS, VOTER_REGISTRY_ABI } from "@/contracts";
+import VotingABI from "@/contracts/Voting.json";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -48,6 +49,14 @@ export default function Dashboard() {
     functionName: "getTotalRegisteredVoters",
   });
 
+  // Read voter credits from contract
+  const { data: voterCreditsData } = useReadContract({
+    address: VotingABI.address as `0x${string}`,
+    abi: VotingABI.abi,
+    functionName: "voterCreditsPerRound",
+    args: [address, 1n], // roundId = 1
+  });
+
   useEffect(() => {
     if (hasCheckedStorage && (!storedNullifier || (!isLoadingRegistration && !isRegistered))) {
       router.push("/register");
@@ -68,7 +77,12 @@ export default function Dashboard() {
   }
 
   const [registeredAt] = nullifierData as [bigint, boolean];
-  const voiceCredits = BigInt(100); // INITIAL_VOICE_CREDITS constant from contract
+  
+  // Get actual available credits from contract
+  let voiceCredits = BigInt(100); // Default INITIAL_VOICE_CREDITS
+  if (voterCreditsData && Array.isArray(voterCreditsData) && voterCreditsData.length >= 3) {
+    voiceCredits = voterCreditsData[2]; // availableCredits is the 3rd element
+  }
 
   return (
     <ProtectedRoute>
