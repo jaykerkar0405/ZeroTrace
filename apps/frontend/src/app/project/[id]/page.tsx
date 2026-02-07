@@ -16,6 +16,7 @@ import { ProtectedRoute } from "@/components/protected-route";
 import { fetchFromIPFS } from "@/lib/storage/ipfs";
 import { Project, ProjectMetadata, ProjectStatus } from "@/types";
 import { PROJECT_ABI, PROJECT_ADDRESS } from "@/contracts";
+import VotingABI from "@/contracts/Voting.json";
 
 export default function ProjectDetailPage() {
     const params = useParams();
@@ -24,6 +25,7 @@ export default function ProjectDetailPage() {
     const [project, setProject] = useState<Project | null>(null);
     const [loading, setLoading] = useState(true);
     const [imageError, setImageError] = useState(false);
+    const [voteCount, setVoteCount] = useState<number>(0);
 
     const { data: projectData } = useReadContract({
         address: PROJECT_ADDRESS,
@@ -37,6 +39,34 @@ export default function ProjectDetailPage() {
             loadProject(projectData as any);
         }
     }, [projectData]);
+
+    // Fetch vote count from Voting contract
+    useEffect(() => {
+        const fetchVotes = async () => {
+            try {
+                const { readContract } = await import('wagmi/actions');
+                const { getConfig } = await import('@/lib/wagmi');
+                const config = getConfig();
+                
+                const votes = await readContract(config, {
+                    address: VotingABI.address as `0x${string}`,
+                    abi: VotingABI.abi,
+                    functionName: 'getProjectVotes',
+                    args: [1n, BigInt(projectId)], // roundId = 1
+                }) as bigint;
+                
+                console.log(`🗳️ Project ${projectId} votes:`, votes.toString());
+                setVoteCount(Number(votes));
+            } catch (error) {
+                console.error('Failed to fetch vote count:', error);
+                setVoteCount(0);
+            }
+        };
+        
+        if (projectId) {
+            fetchVotes();
+        }
+    }, [projectId]);
 
     const loadProject = async (data: any) => {
         try {
@@ -333,7 +363,7 @@ export default function ProjectDetailPage() {
                                         <div className="grid grid-cols-2 gap-3">
                                             <div className="rounded-lg border p-4 text-center">
                                                 <p className="text-2xl font-bold">
-                                                    {project.votingPower || "0"}
+                                                    {voteCount}
                                                 </p>
                                                 <p className="text-xs text-muted-foreground">Votes</p>
                                             </div>

@@ -81,15 +81,46 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (isConfirmed && nullifier && latestProof) {
+      // Store basic registration data
       localStorage.setItem("user_nullifier", nullifier.toString());
       localStorage.setItem("user_proof", JSON.stringify(latestProof));
       localStorage.setItem("registration_timestamp", Date.now().toString());
+      
+      // Fetch voter proof data from the merkle tree service
+      fetchVoterProofData(nullifier);
+    }
+  }, [isConfirmed, nullifier, latestProof, router]);
+
+  const fetchVoterProofData = async (nullifier: bigint) => {
+    try {
+      // Call our backend API to get the voter proof data
+      const response = await fetch('/api/voter/proof', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nullifier: nullifier.toString() })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        
+        // Store voter identity and merkle proof
+        localStorage.setItem("voterIdentity", JSON.stringify(data.identity));
+        localStorage.setItem("merkleProof", JSON.stringify(data.merkleProof));
+        localStorage.setItem("merkleRoot", data.merkleRoot);
+        
+        console.log("Voter proof data stored successfully");
+      } else {
+        console.error("Failed to fetch voter proof data");
+      }
+    } catch (error) {
+      console.error("Error fetching voter proof data:", error);
+    } finally {
       setIsRegistering(false);
       setTimeout(() => {
         router.push("/dashboard");
       }, 500);
     }
-  }, [isConfirmed, nullifier, latestProof, router]);
+  };
 
   useEffect(() => {
     if (error) {
