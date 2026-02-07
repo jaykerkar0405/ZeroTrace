@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Shield, Home, CheckCircle2, Vote, Users, Coins, Rocket, FolderKanban } from "lucide-react";
+import { Shield, Home, CheckCircle2, Vote, Users, Coins, Rocket, FolderKanban, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { useAccount, useReadContract } from "wagmi";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { VOTER_REGISTRY_ADDRESS, VOTER_REGISTRY_ABI } from "@/contracts";
+import { VOTER_REGISTRY_ADDRESS, VOTER_REGISTRY_ABI, PROJECT_ADDRESS, PROJECT_ABI } from "@/contracts";
 import VotingABI from "@/contracts/Voting.json";
 
 export default function Dashboard() {
@@ -20,6 +20,24 @@ export default function Dashboard() {
   const { address } = useAccount();
   const [storedNullifier, setStoredNullifier] = useState<string | null>(null);
   const [hasCheckedStorage, setHasCheckedStorage] = useState(false);
+
+  // Read admin address from contract instead of hardcoding
+  const { data: adminAddress } = useReadContract({
+    address: PROJECT_ADDRESS,
+    abi: PROJECT_ABI,
+    functionName: "admin",
+  });
+
+  const isAdmin = address?.toLowerCase() === adminAddress?.toLowerCase();
+
+  // Debug: Log admin check
+  useEffect(() => {
+    if (adminAddress && address) {
+      console.log("Contract Admin:", adminAddress);
+      console.log("Your Wallet:", address);
+      console.log("Is Admin?", isAdmin);
+    }
+  }, [adminAddress, address, isAdmin]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -100,6 +118,14 @@ export default function Dashboard() {
                   Home
                 </Button>
               </Link>
+              {isAdmin && (
+                <Link href="/admin">
+                  <Button variant="outline" className="gap-2">
+                    <Settings className="h-4 w-4" />
+                    Admin
+                  </Button>
+                </Link>
+              )}
               <ConnectButton />
               <ModeToggle />
             </div>
@@ -161,7 +187,7 @@ export default function Dashboard() {
               </Card>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className={`grid gap-6 ${isAdmin ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
               <Card className="border-2 flex flex-col">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -207,6 +233,31 @@ export default function Dashboard() {
                   </Link>
                 </CardContent>
               </Card>
+
+              {isAdmin && (
+                <Card className="border-2 flex flex-col">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Settings className="h-5 w-5" />
+                      Admin Panel
+                    </CardTitle>
+                    <CardDescription>
+                      Manage projects and platform settings
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="flex flex-col flex-1">
+                    <p className="text-sm text-muted-foreground mb-4 flex-1">
+                      Approve projects, manage matching pools, and view platform analytics.
+                    </p>
+                    <Link href="/admin">
+                      <Button variant="outline" className="w-full gap-2">
+                        <Settings className="h-4 w-4" />
+                        Open Admin Panel
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
             <Card className="border-2">
