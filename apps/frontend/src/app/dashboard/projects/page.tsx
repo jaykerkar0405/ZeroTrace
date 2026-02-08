@@ -147,9 +147,11 @@ export default function ProjectsPage() {
   useEffect(() => {
     if (isSuccess && transactionHash) {
       console.log("✅ Vote successful! Resetting allocations and refreshing data...");
-      setAllocations(new Map());
+      // Refetch credits first, then reset allocations to avoid stale display
+      refetchCredits().then(() => {
+        setAllocations(new Map());
+      });
       refetchProjects();
-      refetchCredits();
       // Refetch votes for all projects
       const projectIds = projects.map((p) => p.id);
       if (projectIds.length > 0) {
@@ -286,7 +288,7 @@ export default function ProjectsPage() {
   // Get actual available credits from contract, or use pending calculation
   let availableCredits = VOICE_CREDITS;
   let usedCredits = 0;
-  if (voterCreditsData && Array.isArray(voterCreditsData) && voterCreditsData.length >= 3) {
+  if (voterCreditsData && Array.isArray(voterCreditsData) && voterCreditsData.length >= 3 && Number(voterCreditsData[0]) > 0) {
     availableCredits = Number(voterCreditsData[2]); // availableCredits is the 3rd element
     usedCredits = Number(voterCreditsData[1]); // usedCredits is the 2nd element
   }

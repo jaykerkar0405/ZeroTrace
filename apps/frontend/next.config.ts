@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
+        ...config.resolve.fallback,
+        "@react-native-async-storage/async-storage": false,
+        "pino-pretty": false,
         fs: false,
         net: false,
         tls: false,
@@ -14,12 +17,12 @@ const nextConfig: NextConfig = {
       };
     } else {
       config.resolve.fallback = {
+        ...config.resolve.fallback,
         fs: false,
         net: false,
         tls: false,
       };
     }
-    
     config.externals.push("pino-pretty", "lokijs", "encoding");
     
     config.module = {

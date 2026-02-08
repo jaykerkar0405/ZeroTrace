@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useReadContract } from "wagmi";
 import { formatEther } from "viem";
-import { Shield, Home, ArrowLeft, ExternalLink } from "lucide-react";
+import { Shield, House, ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -123,7 +123,7 @@ export default function ProjectDetailPage() {
                         <div className="flex items-center gap-4">
                             <Link href="/dashboard">
                                 <Button variant="ghost" className="gap-2">
-                                    <Home className="h-4 w-4" />
+                                    <House className="h-4 w-4" />
                                     Dashboard
                                 </Button>
                             </Link>

@@ -6,7 +6,7 @@ import { useAccount, useReadContract, useWriteContract, useWaitForTransactionRec
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { Shield, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
+import { Shield, ArrowLeft, CircleCheck, LoaderCircle } from "lucide-react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -185,7 +185,7 @@ export default function RegisterPage() {
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-start gap-3 rounded-lg border p-4">
-                  <CheckCircle2 className="h-5 w-5 text-primary mt-0.5" />
+                  <CircleCheck className="h-5 w-5 text-primary mt-0.5" />
                   <div>
                     <h4 className="font-semibold">Step 1: Wallet Connected</h4>
                     <p className="text-sm text-muted-foreground">
@@ -196,7 +196,7 @@ export default function RegisterPage() {
 
                 <div className="flex items-start gap-3 rounded-lg border p-4">
                   {anonAadhaar?.status === "logged-in" ? (
-                    <CheckCircle2 className="h-5 w-5 text-primary mt-0.5" />
+                    <CircleCheck className="h-5 w-5 text-primary mt-0.5" />
                   ) : (
                     <div className="h-5 w-5 rounded-full border-2 border-muted mt-0.5" />
                   )}
@@ -210,7 +210,7 @@ export default function RegisterPage() {
                       {anonAadhaar?.status === "logged-in" && nullifier && (
                         <div className="space-y-2">
                           <Badge variant="outline" className="w-fit gap-2">
-                            <CheckCircle2 className="h-4 w-4" />
+                            <CircleCheck className="h-4 w-4" />
                             Identity Verified
                           </Badge>
                           {isNullifierUsed === true && (
@@ -266,7 +266,7 @@ export default function RegisterPage() {
                 >
                   {isRegistering || isPending || isConfirming ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <LoaderCircle className="h-4 w-4 animate-spin" />
                       {isPending && "Confirm in wallet..."}
                       {isConfirming && "Registering on blockchain..."}
                       {!isPending && !isConfirming && "Processing..."}
