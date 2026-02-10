@@ -312,8 +312,8 @@ export default function ProjectsPage() {
               />
               <span className="text-xl font-bold">ZeroTrace</span>
             </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/dashboard">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <Link href="/dashboard" className="hidden sm:inline-flex">
                 <Button variant="ghost" className="gap-2">
                   <Home className="h-4 w-4" />
                   Dashboard
@@ -325,23 +325,23 @@ export default function ProjectsPage() {
           </div>
         </nav>
 
-        <main className="container py-8">
+        <main className="container py-6 sm:py-8">
           <Link href="/dashboard">
-            <Button variant="ghost" className="gap-2 mb-6">
+            <Button variant="ghost" className="gap-2 mb-4 sm:mb-6">
               <ArrowLeft className="h-4 w-4" />
               Back to Dashboard
             </Button>
           </Link>
 
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
             <div>
-              <h1 className="text-4xl font-bold mb-2">Public Goods Projects</h1>
-              <p className="text-muted-foreground">
+              <h1 className="text-3xl sm:text-4xl font-bold mb-2">Public Goods Projects</h1>
+              <p className="text-muted-foreground text-sm sm:text-base">
                 Discover and support projects building the future of Web3
               </p>
             </div>
             <Link href="/dashboard/submit-project">
-              <Button className="gap-2">
+              <Button className="gap-2 w-full sm:w-auto">
                 <Plus className="h-4 w-4" />
                 Submit Project
               </Button>
@@ -349,10 +349,10 @@ export default function ProjectsPage() {
           </div>
 
           {/* Filters */}
-          <Card className="border-2 mb-8">
+          <Card className="border-2 mb-6 sm:mb-8">
             <CardContent className="pt-6">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="md:col-span-2 relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="sm:col-span-2 relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <input
                     type="text"
@@ -393,13 +393,13 @@ export default function ProjectsPage() {
           </Card>
 
           {/* Project Count */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
               Showing {filteredProjects.length} of {projects.length} projects
             </p>
 
             {filteredProjects.length > 0 && identity && (
-              <Card className="px-6 py-3">
+              <Card className="px-4 sm:px-6 py-3 w-full sm:w-auto">
                 <div className="flex items-center gap-6">
                   <div>
                     <p className="text-lg font-bold">
@@ -468,7 +468,7 @@ export default function ProjectsPage() {
               </CardContent>
             </Card>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredProjects.map((project) => (
                 <Card
                   key={project.id}
@@ -576,7 +576,7 @@ export default function ProjectsPage() {
 
                   {/* Voting Controls */}
                   {identity && (
-                    <div className="px-6 pb-6 border-t pt-4 bg-muted/20">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-6 border-t pt-4 bg-muted/20">
                       <div className="flex items-center justify-between mb-3">
                         <p className="text-sm font-semibold">Allocate Your Votes</p>
                         {(allocations.get(project.id) ?? 0) > 0 && (
@@ -585,7 +585,7 @@ export default function ProjectsPage() {
                           </p>
                         )}
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                         <Button
                           size="sm"
                           variant="outline"
@@ -594,7 +594,7 @@ export default function ProjectsPage() {
                         >
                           -
                         </Button>
-                        <span className="min-w-10 text-center font-semibold">
+                        <span className="min-w-8 sm:min-w-10 text-center font-semibold">
                           {allocations.get(project.id) || 0}
                         </span>
                         <Button
@@ -627,7 +627,7 @@ export default function ProjectsPage() {
                   )}
 
                   {!identity && (
-                    <div className="px-6 pb-6 border-t pt-4 bg-muted/20">
+                    <div className="px-4 sm:px-6 pb-4 sm:pb-6 border-t pt-4 bg-muted/20">
                       <p className="text-sm text-muted-foreground text-center">
                         <Link href="/register" className="text-primary hover:underline">
                           Register as a voter

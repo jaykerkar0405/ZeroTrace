@@ -111,9 +111,9 @@ export default function VotingInterface({ projects }: { projects: Project[] }) {
   };
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Vote on Projects</h1>
+    <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Vote on Projects</h1>
         <p className="text-muted-foreground mb-4">
           Allocate your voice credits to support public good projects. Each vote costs quadratically
           more credits.
@@ -124,7 +124,7 @@ export default function VotingInterface({ projects }: { projects: Project[] }) {
             <CardTitle>Your Voice Credits</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <p className="text-2xl font-bold">
                   {remainingCredits} / {VOICE_CREDITS}
@@ -167,7 +167,7 @@ export default function VotingInterface({ projects }: { projects: Project[] }) {
         </Card>
       )}
 
-      <div className="grid gap-6">
+      <div className="grid gap-4 sm:gap-6">
         {projects.map((project) => {
           const votes = allocations.get(project.id) || 0;
           const cost = calculateQuadraticCost(votes);
@@ -199,8 +199,8 @@ export default function VotingInterface({ projects }: { projects: Project[] }) {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     <Button
                       variant="outline"
                       size="icon"
@@ -210,7 +210,7 @@ export default function VotingInterface({ projects }: { projects: Project[] }) {
                       <Minus className="h-4 w-4" />
                     </Button>
 
-                    <div className="text-center min-w-[100px]">
+                    <div className="text-center min-w-[60px] sm:min-w-[100px]">
                       <p className="text-2xl font-bold">{votes}</p>
                       <p className="text-xs text-muted-foreground">votes</p>
                     </div>
@@ -225,8 +225,8 @@ export default function VotingInterface({ projects }: { projects: Project[] }) {
                     </Button>
                   </div>
 
-                  <div className="text-right">
-                    <p className="text-lg font-semibold">{cost} credits</p>
+                  <div className="text-left sm:text-right">
+                    <p className="text-base sm:text-lg font-semibold">{cost} credits</p>
                     <p className="text-xs text-muted-foreground">
                       Next vote: +{calculateQuadraticCost(votes + 1) - cost} credits
                     </p>

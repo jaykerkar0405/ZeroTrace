@@ -29,14 +29,14 @@ export default function Home() {
             <Image src="/logo.svg" alt="ZeroTrace Logo" width={32} height={32} className="h-8 w-8" />
             <span className="text-xl font-bold">ZeroTrace</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="#features">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="#features" className="hidden sm:inline-flex">
               <Button variant="ghost">Features</Button>
             </Link>
-            <Link href="#how-it-works">
+            <Link href="#how-it-works" className="hidden md:inline-flex">
               <Button variant="ghost">How It Works</Button>
             </Link>
-            <Link href="#architecture">
+            <Link href="#architecture" className="hidden md:inline-flex">
               <Button variant="ghost">Architecture</Button>
             </Link>
             <ModeToggle />
@@ -45,11 +45,11 @@ export default function Home() {
       </nav>
 
       <main className="container">
-        <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-8 py-20 text-center">
+        <section className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-6 sm:gap-8 py-12 sm:py-20 text-center">
           <Badge variant="outline" className="px-4 py-1">
             Privacy-Preserving Quadratic Funding
           </Badge>
-          <h1 className="text-5xl font-bold tracking-tighter sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
             Fair Funding.
             <br />
             Private Voting.
@@ -74,7 +74,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="py-20">
+        <section id="features" className="py-12 sm:py-20">
           <div className="flex flex-col items-center gap-4 text-center">
             <Badge variant="secondary">Key Features</Badge>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -143,7 +143,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="how-it-works" className="py-20">
+        <section id="how-it-works" className="py-12 sm:py-20">
           <div className="flex flex-col items-center gap-4 text-center">
             <Badge variant="secondary">Process</Badge>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -153,7 +153,7 @@ export default function Home() {
               Four simple steps to participate in fair funding allocation
             </p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 sm:mt-12 grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader>
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -269,7 +269,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="architecture" className="py-20">
+        <section id="architecture" className="py-12 sm:py-20">
           <div className="flex flex-col items-center gap-4 text-center">
             <Badge variant="secondary">Technology</Badge>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -344,8 +344,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-20">
-          <div className="flex flex-col items-center gap-8 rounded-lg border-2 bg-muted/50 p-8 text-center md:p-12">
+        <section className="py-12 sm:py-20">
+          <div className="flex flex-col items-center gap-6 sm:gap-8 rounded-lg border-2 bg-muted/50 p-6 sm:p-8 text-center md:p-12">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Ready to Experience Fair Funding?
             </h2>
@@ -369,7 +369,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t py-8">
+      <footer className="border-t py-6 sm:py-8">
         <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex items-center gap-2">
             <Image src="/logo.svg" alt="ZeroTrace Logo" width={24} height={24} className="h-6 w-6" />

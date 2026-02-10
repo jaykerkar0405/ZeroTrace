@@ -112,8 +112,8 @@ export default function Dashboard() {
               <Image src="/logo.svg" alt="ZeroTrace Logo" width={32} height={32} className="h-8 w-8" />
               <span className="text-xl font-bold">ZeroTrace</span>
             </div>
-            <div className="flex items-center gap-4">
-              <Link href="/">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <Link href="/" className="hidden sm:inline-flex">
                 <Button variant="ghost" className="gap-2">
                   <House className="h-4 w-4" />
                   Home
@@ -123,7 +123,7 @@ export default function Dashboard() {
                 <Link href="/admin">
                   <Button variant="outline" className="gap-2">
                     <Settings className="h-4 w-4" />
-                    Admin
+                    <span className="hidden sm:inline">Admin</span>
                   </Button>
                 </Link>
               )}
@@ -133,11 +133,11 @@ export default function Dashboard() {
           </div>
         </nav>
 
-        <main className="container py-20">
-          <div className="flex min-h-[calc(100vh-12rem)] flex-col gap-8">
-            <div className="flex items-center justify-between">
+        <main className="container py-10 sm:py-20">
+          <div className="flex min-h-[calc(100vh-12rem)] flex-col gap-6 sm:gap-8">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h1 className="text-4xl font-bold">Dashboard</h1>
+                <h1 className="text-3xl sm:text-4xl font-bold">Dashboard</h1>
                 <p className="text-muted-foreground mt-2">Welcome to ZeroTrace Platform</p>
               </div>
               <Badge variant="outline" className="gap-2 px-4 py-2">
@@ -146,7 +146,7 @@ export default function Dashboard() {
               </Badge>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
               <Card className="border-2">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
@@ -188,7 +188,7 @@ export default function Dashboard() {
               </Card>
             </div>
 
-            <div className={`grid gap-6 ${isAdmin ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
+            <div className={`grid gap-4 sm:gap-6 ${isAdmin ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3' : 'grid-cols-1 sm:grid-cols-2'}`}>
               <Card className="border-2 flex flex-col">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -269,7 +269,7 @@ export default function Dashboard() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 grid-cols-1 sm:grid-cols-2">
                   <div className="rounded-lg border p-4">
                     <h4 className="font-semibold text-sm mb-2">Wallet Address</h4>
                     <p className="text-sm text-muted-foreground font-mono">
@@ -283,7 +283,7 @@ export default function Dashboard() {
                       Anon Aadhaar Verified
                     </Badge>
                   </div>
-                  <div className="rounded-lg border p-4 md:col-span-2">
+                  <div className="rounded-lg border p-4 sm:col-span-2">
                     <h4 className="font-semibold text-sm mb-2">Nullifier (Anonymous ID)</h4>
                     <p className="text-sm text-muted-foreground font-mono break-all">
                       {storedNullifier ? `${storedNullifier.slice(0, 20)}...${storedNullifier.slice(-20)}` : "N/A"}
@@ -319,7 +319,7 @@ export default function Dashboard() {
                 <CardDescription>Participate in quadratic funding rounds</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="rounded-lg border-2 border-dashed p-12 text-center">
+                <div className="rounded-lg border-2 border-dashed p-8 sm:p-12 text-center">
                   <Vote className="mx-auto h-16 w-16 text-muted-foreground" />
                   <h3 className="mt-4 text-xl font-semibold">No Active Rounds</h3>
                   <p className="mt-2 text-muted-foreground">
