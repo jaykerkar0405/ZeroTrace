@@ -163,8 +163,8 @@ export default function AdminPage() {
                 />
                 <span className="text-xl font-bold">ZeroTrace</span>
               </Link>
-              <div className="flex items-center gap-4">
-                <Link href="/dashboard">
+              <div className="flex items-center gap-2 sm:gap-4">
+                <Link href="/dashboard" className="hidden sm:inline-flex">
                   <Button variant="ghost" className="gap-2">
                     <Home className="h-4 w-4" />
                     Dashboard
@@ -176,7 +176,7 @@ export default function AdminPage() {
             </div>
           </nav>
 
-          <main className="container py-20">
+          <main className="container py-10 sm:py-20">
             <div className="flex min-h-[calc(100vh-12rem)] items-center justify-center">
               <Card className="max-w-md text-center">
                 <CardHeader>
@@ -239,14 +239,14 @@ export default function AdminPage() {
           </div>
         </nav>
 
-        <main className="container py-8">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold mb-2">Admin Panel</h1>
+        <main className="container py-6 sm:py-8">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-2">Admin Panel</h1>
             <p className="text-muted-foreground">Manage projects, users, and platform settings</p>
           </div>
 
           {/* Analytics Dashboard */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Total Projects</CardTitle>
@@ -286,7 +286,7 @@ export default function AdminPage() {
           </div>
 
           {/* Pending Projects Queue */}
-          <Card className="mb-8">
+          <Card className="mb-6 sm:mb-8">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -316,8 +316,8 @@ export default function AdminPage() {
                     return (
                       <Card key={project.id} className="border-2">
                         <CardContent className="pt-6">
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex-1">
+                          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                            <div className="flex-1 min-w-0">
                               <h3 className="text-lg font-semibold mb-2">
                                 {project.metadata.title}
                               </h3>
@@ -346,7 +346,7 @@ export default function AdminPage() {
                                 <span className="font-mono">{project.owner.slice(0, 10)}...</span>
                               </p>
                             </div>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-2 shrink-0">
                               {isOwnProject ? (
                                 <div className="text-right">
                                   <Button
@@ -424,10 +424,10 @@ export default function AdminPage() {
                   {approvedProjects.map((project) => (
                     <div
                       key={project.id}
-                      className="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition-shadow"
+                      className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 p-4 border rounded-lg hover:shadow-md transition-shadow"
                     >
-                      <div className="flex-1">
-                        <h4 className="font-semibold">{project.metadata.title}</h4>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-semibold truncate">{project.metadata.title}</h4>
                         <p className="text-sm text-muted-foreground">
                           {formatEther(project.receivedFunding)} /{" "}
                           {formatEther(project.requestedFunding)} ETH raised

@@ -120,8 +120,8 @@ export default function ProjectDetailPage() {
                             <Image src="/logo.svg" alt="ZeroTrace Logo" width={32} height={32} className="h-8 w-8" />
                             <span className="text-xl font-bold">ZeroTrace</span>
                         </Link>
-                        <div className="flex items-center gap-4">
-                            <Link href="/dashboard">
+                        <div className="flex items-center gap-2 sm:gap-4">
+                            <Link href="/dashboard" className="hidden sm:inline-flex">
                                 <Button variant="ghost" className="gap-2">
                                     <House className="h-4 w-4" />
                                     Dashboard
@@ -133,8 +133,8 @@ export default function ProjectDetailPage() {
                     </div>
                 </nav>
 
-                <main className="container py-20 max-w-4xl mx-auto">
-                    <div className="flex min-h-[calc(100vh-12rem)] flex-col gap-8">
+                <main className="container py-10 sm:py-20 max-w-4xl mx-auto">
+                    <div className="flex min-h-[calc(100vh-12rem)] flex-col gap-6 sm:gap-8">
                         <Link
                             href="/dashboard/projects"
                             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
@@ -184,7 +184,7 @@ export default function ProjectDetailPage() {
                                         </Badge>
                                         <Badge variant="outline">{project.category}</Badge>
                                     </div>
-                                    <h1 className="text-4xl font-bold">{project.title}</h1>
+                                    <h1 className="text-3xl sm:text-4xl font-bold">{project.title}</h1>
                                     <p className="text-muted-foreground text-sm">
                                         Submitted by{" "}
                                         <span className="font-mono">

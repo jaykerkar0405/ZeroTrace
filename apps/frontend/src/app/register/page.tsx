@@ -159,8 +159,8 @@ export default function RegisterPage() {
             <Image src="/logo.svg" alt="ZeroTrace Logo" width={32} height={32} className="h-8 w-8" />
             <span className="text-xl font-bold">ZeroTrace</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/" className="hidden sm:inline-flex">
               <Button variant="ghost" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
                 Home
@@ -172,12 +172,12 @@ export default function RegisterPage() {
         </div>
       </nav>
 
-      <main className="container py-20">
-        <div className="flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center gap-8">
+      <main className="container py-10 sm:py-20">
+        <div className="flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center gap-6 sm:gap-8">
           <Card className="w-full max-w-2xl border-2">
             <CardHeader className="text-center">
               <Shield className="mx-auto h-16 w-16 text-primary" />
-              <CardTitle className="text-3xl">Register as Voter</CardTitle>
+              <CardTitle className="text-2xl sm:text-3xl">Register as Voter</CardTitle>
               <CardDescription className="text-base">
                 Complete your one-time registration to participate in quadratic funding
               </CardDescription>

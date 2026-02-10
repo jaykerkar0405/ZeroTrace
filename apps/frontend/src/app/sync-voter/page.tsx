@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle2, AlertCircle, ArrowLeft } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 import { poseidon1, poseidon2 } from "poseidon-lite";
 
 export default function SyncVoterData() {
@@ -120,65 +123,87 @@ export default function SyncVoterData() {
     };
 
     return (
-        <div className="container max-w-md mx-auto py-20">
-            <Card>
-                <CardHeader>
-                    <CardTitle>Sync Voter Data</CardTitle>
-                    <CardDescription>
-                        Generate your voter credentials to participate in voting.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    {hasNullifier ? (
-                        <div className="text-sm text-green-600 mb-4">
-                            ✓ Voter registration detected
-                        </div>
-                    ) : (
-                        <div className="text-sm text-orange-600 mb-4">
-                            ⚠ No registration found. Please register first.
-                        </div>
-                    )}
+        <div className="min-h-screen max-w-7xl mx-auto bg-background">
+            <nav className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+                <div className="container flex h-16 items-center justify-between">
+                    <Link href="/dashboard" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                        <Image src="/logo.svg" alt="ZeroTrace Logo" width={32} height={32} className="h-8 w-8" />
+                        <span className="text-xl font-bold">ZeroTrace</span>
+                    </Link>
+                    <div className="flex items-center gap-2 sm:gap-4">
+                        <Link href="/dashboard" className="hidden sm:inline-flex">
+                            <Button variant="ghost" className="gap-2">
+                                <ArrowLeft className="h-4 w-4" />
+                                Dashboard
+                            </Button>
+                        </Link>
+                        <ModeToggle />
+                    </div>
+                </div>
+            </nav>
 
-                    <Button
-                        onClick={syncVoterData}
-                        disabled={syncing || !hasNullifier}
-                        className="w-full"
-                    >
-                        {syncing ? (
-                            <>
-                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                Generating credentials...
-                            </>
-                        ) : (
-                            'Generate Voter Credentials'
-                        )}
-                    </Button>
+            <main className="container py-10 sm:py-20">
+                <div className="flex min-h-[calc(100vh-12rem)] flex-col items-center justify-center">
+                    <Card className="w-full max-w-md">
+                        <CardHeader>
+                            <CardTitle>Sync Voter Data</CardTitle>
+                            <CardDescription>
+                                Generate your voter credentials to participate in voting.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {hasNullifier ? (
+                                <div className="text-sm text-green-600 mb-4">
+                                    ✓ Voter registration detected
+                                </div>
+                            ) : (
+                                <div className="text-sm text-orange-600 mb-4">
+                                    ⚠ No registration found. Please register first.
+                                </div>
+                            )}
 
-                    {success && (
-                        <div className="flex items-center gap-2 text-green-600">
-                            <CheckCircle2 className="h-5 w-5" />
-                            <p className="text-sm">
-                                Success! Redirecting to projects page...
-                            </p>
-                        </div>
-                    )}
+                            <Button
+                                onClick={syncVoterData}
+                                disabled={syncing || !hasNullifier}
+                                className="w-full"
+                            >
+                                {syncing ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Generating credentials...
+                                    </>
+                                ) : (
+                                    'Generate Voter Credentials'
+                                )}
+                            </Button>
 
-                    {error && (
-                        <div className="flex items-center gap-2 text-destructive">
-                            <AlertCircle className="h-5 w-5" />
-                            <p className="text-sm">{error}</p>
-                        </div>
-                    )}
+                            {success && (
+                                <div className="flex items-center gap-2 text-green-600">
+                                    <CheckCircle2 className="h-5 w-5 shrink-0" />
+                                    <p className="text-sm">
+                                        Success! Redirecting to projects page...
+                                    </p>
+                                </div>
+                            )}
 
-                    {!hasNullifier && (
-                        <div className="text-center pt-4">
-                            <a href="/register" className="text-sm text-primary hover:underline">
-                                Go to Registration →
-                            </a>
-                        </div>
-                    )}
-                </CardContent>
-            </Card>
+                            {error && (
+                                <div className="flex items-center gap-2 text-destructive">
+                                    <AlertCircle className="h-5 w-5 shrink-0" />
+                                    <p className="text-sm">{error}</p>
+                                </div>
+                            )}
+
+                            {!hasNullifier && (
+                                <div className="text-center pt-4">
+                                    <Link href="/register" className="text-sm text-primary hover:underline">
+                                        Go to Registration →
+                                    </Link>
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
+                </div>
+            </main>
         </div>
     );
 }

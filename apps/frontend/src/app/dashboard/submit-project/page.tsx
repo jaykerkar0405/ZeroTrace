@@ -120,8 +120,8 @@ export default function SubmitProjectPage() {
                             <Image src="/logo.svg" alt="ZeroTrace Logo" width={32} height={32} className="h-8 w-8" />
                             <span className="text-xl font-bold">ZeroTrace</span>
                         </Link>
-                        <div className="flex items-center gap-4">
-                            <Link href="/dashboard">
+                        <div className="flex items-center gap-2 sm:gap-4">
+                            <Link href="/dashboard" className="hidden sm:inline-flex">
                                 <Button variant="ghost" className="gap-2">
                                     <House className="h-4 w-4" />
                                     Dashboard
@@ -133,15 +133,15 @@ export default function SubmitProjectPage() {
                     </div>
                 </nav>
 
-                <main className="container py-20 max-w-3xl">
-                    <div className="flex min-h-[calc(100vh-12rem)] flex-col gap-8">
+                <main className="container py-10 sm:py-20 max-w-3xl">
+                    <div className="flex min-h-[calc(100vh-12rem)] flex-col gap-6 sm:gap-8">
                         {/* Header */}
                         <div>
                             <Link href="/dashboard" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
                                 <ArrowLeft className="h-3.5 w-3.5" />
                                 Back to dashboard
                             </Link>
-                            <h1 className="text-4xl font-bold">New project</h1>
+                            <h1 className="text-3xl sm:text-4xl font-bold">New project</h1>
                             <p className="text-muted-foreground mt-2">
                                 Describe your project and submit it for quadratic funding.
                             </p>
@@ -376,7 +376,7 @@ export default function SubmitProjectPage() {
                             <div className="border-t" />
 
                             {/* Actions */}
-                            <div className="flex items-center justify-between pb-8">
+                            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-between gap-4 pb-8">
                                 <Link href="/dashboard">
                                     <Button type="button" variant="ghost" className="gap-2">
                                         <ArrowLeft className="h-4 w-4" />
